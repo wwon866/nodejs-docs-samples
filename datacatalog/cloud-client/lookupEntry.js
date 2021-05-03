@@ -45,4 +45,8 @@ const main = async (projectId, datasetId) => {
 };
 
 // node lookupEntry.js <projectId> <datasetID>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));

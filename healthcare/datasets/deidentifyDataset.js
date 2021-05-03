@@ -64,4 +64,8 @@ const main = (
 };
 
 // node deidentifyDataset.js <projectId> <cloudRegion> <sourceDatasetId> <destinationDatasetId> <keeplistTags>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));

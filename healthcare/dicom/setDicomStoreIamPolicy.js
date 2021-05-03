@@ -68,4 +68,8 @@ const main = (
 };
 
 // node setDicomStoreIamPolicy.js <projectId> <cloudRegion> <datasetId> <dicomStoreId> <member> <role>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));

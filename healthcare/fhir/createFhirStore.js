@@ -56,4 +56,8 @@ const main = (
 
 // node createFhirStore.js <projectId> <cloudRegion> <datasetId> <fhirStoreId>
 // <version>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));

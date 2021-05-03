@@ -63,4 +63,8 @@ const main = (
 };
 
 // node patchHl7v2Message.js <projectId> <cloudRegion> <datasetId> <hl7v2StoreId> <hl7v2MessageId> <labelKey> <labelValue>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));

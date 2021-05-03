@@ -53,4 +53,8 @@ const main = (
 };
 
 // node searchFhirResourcesGet.js <projectId> <cloudRegion> <datasetId> <fhirStoreId> <resourceType>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));

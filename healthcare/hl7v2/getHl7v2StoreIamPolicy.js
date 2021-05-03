@@ -52,4 +52,8 @@ const main = (
 };
 
 // node getHl7v2StoreIamPolicy.js <projectId> <cloudRegion> <datasetId> <hl7v2StoreId>
+process.on('unhandledRejection', err => {
+  console.error(err.message);
+  process.exitCode = 1;
+});
 main(...process.argv.slice(2));
