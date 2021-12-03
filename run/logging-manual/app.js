@@ -49,4 +49,30 @@ app.get('/', (req, res) => {
   res.send('Hello Logger!');
 });
 
+app.get('/logs', (req, res) => {
+  const {Logging} = require('@google-cloud/logging');
+  const logging = new Logging();
+  const log = logging.logSync('test-log');
+  
+  // const metadata = {
+  //   severity: 'ERROR',
+  //   httpRequest: {
+  //     requestMethod: req.method,
+  //     requestUrl: req.originalUrl,
+  //     status: 200,
+  //     userAgent: req.header('User-Agent'),
+  //   },
+  // };
+  const metadata = {
+    severity: 'ERROR',
+    httpRequest: req
+  };
+
+
+  const entry = log.entry(metadata, "With request log correlation!");
+  log.write(entry);
+
+  res.send("View your logs!");
+});
+
 module.exports = app;
