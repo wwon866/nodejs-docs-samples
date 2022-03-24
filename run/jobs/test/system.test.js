@@ -71,7 +71,7 @@ describe('End-to-End Tests', () => {
       `timestamp>="${dateMinutesAgo(new Date(), 5)}"`;
 
     let found = false;
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       const entries = await logging.getEntries({
         filter: preparedFilter,
         autoPaginate: false,
