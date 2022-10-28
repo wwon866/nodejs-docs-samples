@@ -12,6 +12,7 @@ on:
     types: [labeled]
     paths:
     - '{{path}}/**'
+    - 'appengine/metadata/flexible/**'
   schedule:
   - cron:  '0 0 * * 0'
 jobs:

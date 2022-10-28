@@ -11,7 +11,7 @@ on:
   pull_request_target:
     types: [labeled]
     paths:
-    - '{{path}}/**'
+    - 'datastore/functions/**'
   schedule:
   - cron:  '0 0 * * 0'
 jobs:

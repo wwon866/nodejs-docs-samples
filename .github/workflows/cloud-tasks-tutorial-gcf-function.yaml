@@ -1,17 +1,17 @@
-name: appengine-building-an-app-update
+name: cloud-tasks-tutorial-gcf-function
 on:
   push:
     branches:
     - main
     paths:
-    - 'appengine/building-an-app/update/**'
+    - 'cloud-tasks/tutorial-gcf/function/**'
   pull_request:
     paths:
-    - 'appengine/building-an-app/update/**'
+    - 'cloud-tasks/tutorial-gcf/function/**'
   pull_request_target:
     types: [labeled]
     paths:
-    - 'appengine/building-an-app/update/**'
+    - 'cloud-tasks/tutorial-gcf/function/**'
   schedule:
   - cron:  '0 0 * * 0'
 jobs:
@@ -24,26 +24,26 @@ jobs:
       pull-requests: 'write'
       id-token: 'write'
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{github.event.pull_request.head.ref}}
-        repository: ${{github.event.pull_request.head.repo.full_name}}
-    - uses: google-github-actions/auth@v0.8.0
+    - uses: 'google-github-actions/auth@v0.3.1'
       with:
         workload_identity_provider: 'projects/1046198160504/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
         service_account: 'kokoro-system-test@long-door-651.iam.gserviceaccount.com'
         create_credentials_file: 'true'
         access_token_lifetime: 600s
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{github.event.pull_request.head.ref}}
+        repository: ${{github.event.pull_request.head.repo.full_name}}
+    - uses: actions/setup-node@v2
       with:
         node-version: 14
     - run: npm install
-      working-directory: appengine/building-an-app/update
+      working-directory: cloud-tasks/tutorial-gcf/function
     - run: npm test
-      working-directory: appengine/building-an-app/update
+      working-directory: cloud-tasks/tutorial-gcf/function
       env:
-        MOCHA_REPORTER_SUITENAME: appengine_building_an_app_update
-        MOCHA_REPORTER_OUTPUT: appengine_building_an_app_update_sponge_log.xml
+        MOCHA_REPORTER_SUITENAME: cloud_tasks_tutorial_gcf_function
+        MOCHA_REPORTER_OUTPUT: cloud_tasks_tutorial_gcf_function_sponge_log.xml
         MOCHA_REPORTER: xunit
     - if: ${{ github.event.action == 'labeled' && github.event.label.name == 'actions:force-run' }}
       uses: actions/github-script@v6

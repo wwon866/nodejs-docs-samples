@@ -11,7 +11,7 @@ on:
   pull_request_target:
     types: [labeled]
     paths:
-    - '{{path}}/**'
+    - 'healthcare/datasets/**'
   schedule:
   - cron:  '0 2 * * *'
 jobs:
