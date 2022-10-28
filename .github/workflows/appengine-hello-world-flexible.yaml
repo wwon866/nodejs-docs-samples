@@ -10,6 +10,8 @@ on:
     - 'appengine/hello-world/flexible/**'
   pull_request_target:
     types: [labeled]
+    paths:
+    - '{{path}}/**'
   schedule:
   - cron:  '0 0 * * 0'
 jobs:

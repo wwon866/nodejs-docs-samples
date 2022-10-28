@@ -22,7 +22,7 @@ async function main() {
     const path = workflow;
     const name = workflow.split('/').join('-');
     const suite = name.split('-').join('_');
-    const data = nunjucks.render('ci.yaml.template', {path, name, suite});
+    const data = nunjucks.render('ci.yaml.njk', {path, name, suite});
     await fs.writeFile(`.github/workflows/${name}.yaml`, data);
   }
 }
