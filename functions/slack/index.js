@@ -19,6 +19,7 @@ const functions = require('@google-cloud/functions-framework');
 const google = require('@googleapis/kgsearch');
 const {verifyRequestSignature} = require('@slack/events-api');
 
+
 // Get a reference to the Knowledge Graph Search component
 const kgsearch = google.kgsearch('v1');
 // [END functions_slack_setup]
