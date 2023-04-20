@@ -54,7 +54,7 @@ afterEach(restoreConsole);
 describe('processImage', () => {
   describe('functions_ocr_process', () => {
     it('processImage validates parameters', async () => {
-      const cloudEvent = CloudEvent({
+      const cloudEvent = new CloudEvent({
         data: {},
       });
       const server = getTestServer('processImage');
@@ -67,7 +67,7 @@ describe('processImage', () => {
   });
   describe('functions_ocr_process functions_ocr_detect', () => {
     it('processImage detects text', async () => {
-      const cloudEvent = CloudEvent({
+      const cloudEvent = new CloudEvent({
         data: {
           bucket: bucketName,
           name: filename,
@@ -90,7 +90,7 @@ describe('processImage', () => {
 describe('translateText', () => {
   describe('functions_ocr_translate', () => {
     it('translateText validates parameters', async () => {
-      const cloudEvent = CloudEvent({
+      const cloudEvent = new CloudEvent({
         data: {
           message: Buffer.from(JSON.stringify({})).toString('base64'),
         },
@@ -106,7 +106,7 @@ describe('translateText', () => {
 
   describe('functions_ocr_translate', () => {
     it('translateText translates and publishes text', async () => {
-      const cloudEvent = CloudEvent({
+      const cloudEvent = new CloudEvent({
         data: {
           message: Buffer.from(
             JSON.stringify({
@@ -128,7 +128,7 @@ describe('translateText', () => {
 describe('saveResult', () => {
   describe('functions_ocr_save', () => {
     it('saveResult validates parameters', async () => {
-      const cloudEvent = CloudEvent({
+      const cloudEvent = new CloudEvent({
         data: Buffer.from(JSON.stringify({text, filename})).toString('base64'),
       });
 
@@ -143,7 +143,7 @@ describe('saveResult', () => {
 
   describe('functions_ocr_save', () => {
     it('saveResult translates and publishes text', async () => {
-      const cloudEvent = CloudEvent({
+      const cloudEvent = new CloudEvent({
         data: Buffer.from(JSON.stringify({text, filename, lang})).toString(
           'base64'
         ),
