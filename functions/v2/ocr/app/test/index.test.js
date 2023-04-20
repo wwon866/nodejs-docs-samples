@@ -18,7 +18,7 @@ require('..');
 
 const assert = require('assert');
 const sinon = require('sinon');
-const {CloudEvent} = require('cloudevent');
+const {CloudEvent} = require('cloudevents');
 
 const {Storage} = require('@google-cloud/storage');
 const storage = new Storage();
