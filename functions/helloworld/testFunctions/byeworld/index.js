@@ -16,11 +16,32 @@
 
 // [START functions_helloworld_get]
 const functions = require('@google-cloud/functions-framework');
+const { request } = require('http');
 
+const options = new URL('https://weigh9-backend.vercel.app/hardware/register?token=1234');
+// var options = {
+//     url: "https://weigh9-backend.vercel.app/hardware/register?token=1234",
+//     json: true
+//  };
 // Register an HTTP function with the Functions Framework that will be executed
 // when you make an HTTP request to the deployed function's endpoint.
-functions.http('hardware/register', (req, res) => {
+functions.http('Byeworld', (req, res) => {
     // res.redirect("https://weigh9-backend.vercel.app/docs")
-    res.send('Hello World!');
+    // res.send('Bye World!');
+    const req2 = http.request(options, (res) => {
+        console.log(`STATUS: ${res.statusCode}`);
+        console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => {
+          console.log(`BODY: ${chunk}`);
+        });
+        res.on('end', () => {
+          console.log('No more data in response.');
+        });
+      });
+      
+    res.send(
+      req2.chunk  
+    )
 });
 // [END functions_helloworld_get]

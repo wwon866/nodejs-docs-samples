@@ -1,0 +1,5 @@
+{\rtf1}
+gcloud functions deploy Helloworld --runtime nodejs14 --trigger-http --allow-unauthenticated --region australia-southeast1
+gcloud api-gateway apis create greet
+gcloud api-gateway api-configs create greet-config --api=greet --openapi-spec=api-config.yaml --backend-auth-service-account=wabenwongtest@appspot.gserviceaccount.com
+gcloud api-gateway gateways create greet-gateway --api=greet --api-config=greet-config --location=australia-southeast1
