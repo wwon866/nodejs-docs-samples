@@ -21,10 +21,21 @@ paths:
             type: string
   /hardware/register:
     get:
-      summary: Greet a user
-      operationId: bye
+      summary: Register a scale
+      operationId: register
       x-google-backend:
-        address: https://australia-southeast1-wabenwongtest.cloudfunctions.net/Byeworld
+        address: https://australia-southeast1-wabenwongtest.cloudfunctions.net/register
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /hardware/send:
+    get:
+      summary: Send a measurement
+      operationId: send
+      x-google-backend:
+        address: https://australia-southeast1-wabenwongtest.cloudfunctions.net/send
       responses:
         '200':
           description: A successful response

@@ -28,14 +28,16 @@ const fetch = require('node-fetch');
 
 // Register an HTTP function with the Functions Framework that will be executed
 // when you make an HTTP request to the deployed function's endpoint.
-functions.http('register', async (req, res) => {
+functions.http('send', async (req, res) => {
     const hardwareToken = req.query.token;
-    const url = 'https://weigh9-backend.vercel.app/hardware/register?token='+hardwareToken;
+    const hardwareUid = req.query.uid;
+    const weight = req.query.weight;
+    const url = 'https://weigh9-backend.vercel.app/hardware/send?token='+hardwareToken+"&uid="+hardwareUid+"&weight="+weight;
 
 //   res.send(hardwareToken);
 try{
-    let response = await fetch(url).then(result => result.json())
-    res.json(response)
+    let response = await fetch(url)
+    res.send(response.status)
 } catch (error){
     console.log(error);
     res.status(500).send("Response ERRoR")
