@@ -19,7 +19,7 @@ paths:
           description: A successful response
           schema:
             type: string
-  /bye:
+  /hardware/register:
     get:
       summary: Greet a user
       operationId: bye
