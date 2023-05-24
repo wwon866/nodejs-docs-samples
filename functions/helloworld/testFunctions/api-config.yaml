@@ -4,7 +4,7 @@ info:
   description: Sample API on API Gateway with 2 Google Cloud Functions backends
   version: 1.0.0
 schemes:
-  - https
+  - http
 produces:
   - application/json
 paths:
@@ -36,6 +36,17 @@ paths:
       operationId: send
       x-google-backend:
         address: https://australia-southeast1-wabenwongtest.cloudfunctions.net/send
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
+  /hardware/email:
+    get:
+      summary: Gets an email
+      operationId: email
+      x-google-backend:
+        address: http://australia-southeast1-wabenwongtest.cloudfunctions.net/email
       responses:
         '200':
           description: A successful response
